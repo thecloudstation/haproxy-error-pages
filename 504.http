@@ -1,0 +1,183 @@
+HTTP/1.0 504 Gateway Timeout
+Cache-Control: no-cache
+Connection: close
+Content-Type: text/html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="refresh" content="30">
+<title>504 - Gateway Timeout - CloudStation</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --background:#ffffff;--background:oklch(1 0 0);
+  --foreground:#252525;--foreground:oklch(0.145 0 0);
+  --card:#ffffff;--card:oklch(1 0 0);
+  --card-foreground:#252525;--card-foreground:oklch(0.145 0 0);
+  --primary:#343434;--primary:oklch(0.205 0 0);
+  --primary-foreground:#fcfcfc;--primary-foreground:oklch(0.985 0 0);
+  --muted-foreground:#8e8e8e;--muted-foreground:oklch(0.556 0 0);
+  --border:#ebebeb;--border:oklch(0.922 0 0);
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --background:#252525;--background:oklch(0.145 0 0);
+    --foreground:#fcfcfc;--foreground:oklch(0.985 0 0);
+    --card:#343434;--card:oklch(0.205 0 0);
+    --card-foreground:#fcfcfc;--card-foreground:oklch(0.985 0 0);
+    --primary:#ebebeb;--primary:oklch(0.922 0 0);
+    --primary-foreground:#343434;--primary-foreground:oklch(0.205 0 0);
+    --muted-foreground:#b5b5b5;--muted-foreground:oklch(0.708 0 0);
+    --border:rgba(255,255,255,0.1);--border:oklch(1 0 0 / 10%);
+  }
+}
+body{
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(ellipse at 30% 20%,rgba(238,106,12,0.15) 0%,transparent 50%),
+    radial-gradient(ellipse at 70% 80%,rgba(20,184,166,0.1) 0%,transparent 50%);
+  background-color:var(--background);
+  color:var(--foreground);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  line-height:1.6;
+}
+.container{width:100%;max-width:520px}
+.card{
+  background:var(--card);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-radius:22px;
+  border:1px solid var(--border);
+  box-shadow:0 30px 80px -40px rgba(238,106,12,0.25);
+  padding:48px 36px;
+  text-align:center;
+}
+.icon{width:64px;height:64px;margin:0 auto 24px}
+.status{
+  font-size:6rem;
+  font-weight:800;
+  line-height:1;
+  margin-bottom:8px;
+  background:linear-gradient(to right,#f97316,#ea580c,#f59e0b);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.heading{
+  font-size:2rem;
+  font-weight:700;
+  color:var(--card-foreground);
+  margin-bottom:12px;
+}
+.description{
+  color:var(--muted-foreground);
+  font-size:0.95rem;
+  margin-bottom:28px;
+  max-width:400px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.actions{display:flex;flex-direction:column;gap:12px;align-items:center;margin-bottom:32px}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 28px;
+  border-radius:12px;
+  font-size:0.95rem;
+  font-weight:600;
+  text-decoration:none;
+  transition:opacity 0.2s,transform 0.2s;
+  cursor:pointer;
+  border:none;
+}
+.btn:hover{opacity:0.9;transform:translateY(-1px)}
+.btn-primary{
+  background:var(--primary);
+  color:var(--primary-foreground);
+}
+.btn-secondary{
+  background:transparent;
+  color:var(--muted-foreground);
+  font-weight:500;
+  padding:8px 20px;
+}
+.btn-secondary:hover{color:var(--foreground)}
+.divider{
+  height:1px;
+  background:var(--border);
+  margin:0 0 28px;
+}
+.troubleshooting{text-align:left}
+.troubleshooting h3{
+  font-size:0.85rem;
+  font-weight:600;
+  color:var(--card-foreground);
+  margin-bottom:10px;
+}
+.troubleshooting ul{
+  list-style:none;
+  padding:0;
+  margin:0 0 20px;
+}
+.troubleshooting li{
+  position:relative;
+  padding-left:18px;
+  font-size:0.82rem;
+  color:var(--muted-foreground);
+  margin-bottom:6px;
+  line-height:1.5;
+}
+.troubleshooting li::before{
+  content:"\2022";
+  position:absolute;
+  left:0;
+  color:var(--muted-foreground);
+  opacity:0.5;
+}
+@media(max-width:480px){
+  .card{padding:36px 24px}
+  .status{font-size:4.5rem}
+  .heading{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<div class="icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f97316"/><stop offset="100%" style="stop-color:#fbbf24"/></linearGradient></defs><rect width="100" height="100" rx="20" fill="url(#brandGradient)"/><text x="50" y="70" font-family="system-ui,sans-serif" font-size="60" font-weight="bold" text-anchor="middle" fill="white">C</text></svg>
+</div>
+<div class="status">504</div>
+<h1 class="heading">Gateway Timeout</h1>
+<p class="description">The server took too long to respond. Your application may be processing a heavy request.</p>
+<div class="actions">
+<a href="" class="btn btn-primary" onclick="location.reload();return false;">Try Again</a>
+<a href="https://cloud-station.io" class="btn btn-secondary">Visit CloudStation</a>
+</div>
+<div class="divider"></div>
+<div class="troubleshooting">
+<h3>What does this mean?</h3>
+<ul>
+<li>The upstream server is taking too long to respond</li>
+<li>Your application may be processing a heavy or long-running request</li>
+<li>The connection timed out before receiving a response</li>
+</ul>
+<h3>What can I do?</h3>
+<ul>
+<li>Wait a moment and try again</li>
+<li>Check your application logs in the Live Logs tab</li>
+<li>If your application performs long-running tasks, consider increasing the timeout in your service settings</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>

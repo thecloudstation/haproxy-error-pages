@@ -1,0 +1,83 @@
+HTTP/1.0 502 Bad Gateway
+Cache-Control: no-cache
+Connection: close
+Content-Type: text/html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="15">
+<title>502 - Bad Gateway - CloudStation</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#ffffff;--bg:oklch(1 0 0);
+  --fg:#252525;--fg:oklch(0.145 0 0);
+  --card:#ffffff;--card:oklch(1 0 0);
+  --card-fg:#252525;--card-fg:oklch(0.145 0 0);
+  --primary:#343434;--primary:oklch(0.205 0 0);
+  --primary-fg:#fcfcfc;--primary-fg:oklch(0.985 0 0);
+  --muted-fg:#8e8e8e;--muted-fg:oklch(0.556 0 0);
+  --border:#ebebeb;--border:oklch(0.922 0 0);
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#252525;--bg:oklch(0.145 0 0);
+    --fg:#fcfcfc;--fg:oklch(0.985 0 0);
+    --card:#343434;--card:oklch(0.205 0 0);
+    --card-fg:#fcfcfc;--card-fg:oklch(0.985 0 0);
+    --primary:#ebebeb;--primary:oklch(0.922 0 0);
+    --primary-fg:#343434;--primary-fg:oklch(0.205 0 0);
+    --muted-fg:#b5b5b5;--muted-fg:oklch(0.708 0 0);
+    --border:rgba(255,255,255,0.1);--border:oklch(1 0 0 / 10%);
+  }
+}
+html,body{height:100%;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--fg);background-color:var(--bg);background-image:radial-gradient(ellipse at 30% 20%,rgba(238,106,12,0.15) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(20,184,166,0.1) 0%,transparent 50%);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.container{display:flex;align-items:center;justify-content:center;min-height:100%;padding:1.5rem}
+.card{width:100%;max-width:480px;text-align:center;padding:3rem 2.5rem;background:var(--card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:22px;border:1px solid var(--border);box-shadow:0 30px 80px -40px rgba(238,106,12,0.25)}
+.icon{width:64px;height:64px;margin:0 auto 1.5rem}
+.code{font-size:6rem;font-weight:800;line-height:1;letter-spacing:-0.04em;margin-bottom:0.5rem;background:linear-gradient(to right,#f97316,#ea580c,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+h1{font-size:2rem;font-weight:700;margin-bottom:0.75rem;color:var(--fg)}
+.desc{font-size:1rem;line-height:1.6;color:var(--muted-fg);margin-bottom:2rem}
+.actions{display:flex;flex-direction:column;gap:0.75rem;align-items:center;margin-bottom:2rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:2.75rem;padding:0 1.75rem;border-radius:10px;font-size:0.925rem;font-weight:600;text-decoration:none;transition:opacity 0.15s,transform 0.15s;cursor:pointer;border:none}
+.btn:hover{opacity:0.9;transform:translateY(-1px)}
+.btn-primary{background:var(--primary);color:var(--primary-fg)}
+.btn-ghost{background:transparent;color:var(--muted-fg);font-weight:500;height:auto;padding:0.5rem 1rem}
+.btn-ghost:hover{color:var(--fg)}
+.help{border-top:1px solid var(--border);padding-top:1.5rem;text-align:left}
+.help-title{font-size:0.85rem;font-weight:600;color:var(--fg);margin-bottom:0.75rem}
+.help ul{list-style:none;padding:0}
+.help li{position:relative;padding-left:1.25rem;font-size:0.825rem;line-height:1.65;color:var(--muted-fg)}
+.help li::before{content:"";position:absolute;left:0;top:0.55em;width:5px;height:5px;border-radius:50%;background:linear-gradient(135deg,#f97316,#fbbf24)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <div class="icon" role="img" aria-label="CloudStation">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f97316"/><stop offset="100%" style="stop-color:#fbbf24"/></linearGradient></defs><rect width="100" height="100" rx="20" fill="url(#g)"/><text x="50" y="70" font-family="system-ui,sans-serif" font-size="60" font-weight="bold" text-anchor="middle" fill="white">C</text></svg>
+    </div>
+    <div class="code" aria-hidden="true">502</div>
+    <h1>Bad Gateway</h1>
+    <p class="desc">We received an invalid response from the upstream server. This is usually temporary.</p>
+    <div class="actions">
+      <a href="" class="btn btn-primary" onclick="location.reload();return false;">Try Again</a>
+      <a href="https://cloud-station.io" class="btn btn-ghost">Visit CloudStation</a>
+    </div>
+    <div class="help">
+      <p class="help-title">What does this mean?</p>
+      <ul>
+        <li>The gateway received an invalid response from the upstream server</li>
+        <li>This is usually temporary and resolves quickly</li>
+        <li>Your application may be restarting or temporarily unavailable</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<p class="sr-only">This page will automatically refresh in 15 seconds.</p>
+</body>
+</html>

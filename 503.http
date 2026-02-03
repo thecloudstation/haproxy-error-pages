@@ -1,0 +1,217 @@
+HTTP/1.0 503 Service Unavailable
+Cache-Control: no-cache
+Connection: close
+Content-Type: text/html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="30">
+<title>503 - Service Unavailable - CloudStation</title>
+<style>
+:root{
+--background:#ffffff;--background:oklch(1 0 0);
+--foreground:#252525;--foreground:oklch(0.145 0 0);
+--card:#ffffff;--card:oklch(1 0 0);
+--card-foreground:#252525;--card-foreground:oklch(0.145 0 0);
+--primary:#343434;--primary:oklch(0.205 0 0);
+--primary-foreground:#fcfcfc;--primary-foreground:oklch(0.985 0 0);
+--muted-foreground:#8e8e8e;--muted-foreground:oklch(0.556 0 0);
+--border:#ebebeb;--border:oklch(0.922 0 0);
+}
+@media(prefers-color-scheme:dark){
+:root{
+--background:#252525;--background:oklch(0.145 0 0);
+--foreground:#fcfcfc;--foreground:oklch(0.985 0 0);
+--card:#343434;--card:oklch(0.205 0 0);
+--card-foreground:#fcfcfc;--card-foreground:oklch(0.985 0 0);
+--primary:#ebebeb;--primary:oklch(0.922 0 0);
+--primary-foreground:#343434;--primary-foreground:oklch(0.205 0 0);
+--muted-foreground:#b5b5b5;--muted-foreground:oklch(0.708 0 0);
+--border:rgba(255,255,255,0.1);--border:oklch(1 0 0/10%);
+}
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:
+radial-gradient(ellipse at 30% 20%,rgba(238,106,12,0.15) 0%,transparent 50%),
+radial-gradient(ellipse at 70% 80%,rgba(20,184,166,0.1) 0%,transparent 50%);
+background-color:var(--background);
+color:var(--foreground);
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:1rem;
+}
+.container{max-width:42rem;width:100%}
+.card{
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+border-radius:22px;
+border:1px solid var(--border);
+box-shadow:0 30px 80px -40px rgba(238,106,12,0.25);
+padding:3rem 2rem;
+background:var(--card);
+color:var(--card-foreground);
+text-align:center;
+}
+.icon{width:64px;height:64px;margin:0 auto 1.5rem}
+.status-code{
+font-size:6rem;
+font-weight:800;
+line-height:1;
+margin-bottom:0.5rem;
+background:linear-gradient(to right,#f97316,#ea580c,#f59e0b);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+}
+.heading{font-size:2rem;font-weight:700;margin-bottom:0.75rem}
+.description{
+color:var(--muted-foreground);
+font-size:1.05rem;
+line-height:1.6;
+max-width:32rem;
+margin:0 auto 2rem;
+}
+.actions{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem}
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:0.7rem 1.5rem;
+border-radius:10px;
+font-size:0.95rem;
+font-weight:600;
+text-decoration:none;
+transition:opacity 0.2s,transform 0.2s;
+cursor:pointer;
+border:none;
+}
+.btn:hover{opacity:0.9;transform:translateY(-1px)}
+.btn-primary{background:var(--primary);color:var(--primary-foreground)}
+.btn-secondary{
+background:transparent;
+color:var(--muted-foreground);
+border:1px solid var(--border);
+}
+.btn-secondary:hover{color:var(--foreground)}
+.divider{
+border:none;
+border-top:1px solid var(--border);
+margin:2rem 0;
+}
+.troubleshooting{text-align:left}
+.troubleshooting h3{
+font-size:1.25rem;
+font-weight:700;
+margin-bottom:1.25rem;
+}
+.section{
+background:var(--background);
+border-radius:14px;
+padding:1.25rem;
+margin-bottom:1rem;
+border:1px solid var(--border);
+}
+.section h4{
+font-size:0.95rem;
+font-weight:600;
+margin-bottom:0.75rem;
+display:flex;
+align-items:center;
+gap:0.5rem;
+}
+.section ul{list-style:none;padding:0}
+.section li{
+display:flex;
+align-items:flex-start;
+gap:0.5rem;
+font-size:0.9rem;
+color:var(--muted-foreground);
+margin-bottom:0.5rem;
+line-height:1.5;
+}
+.section li:last-child{margin-bottom:0}
+.check{color:#f97316;flex-shrink:0;width:18px;height:18px;margin-top:2px}
+.steps{list-style:none;padding:0;counter-reset:step}
+.steps li{
+display:flex;
+align-items:flex-start;
+gap:0.75rem;
+font-size:0.9rem;
+color:var(--muted-foreground);
+margin-bottom:0.75rem;
+line-height:1.5;
+}
+.steps li:last-child{margin-bottom:0}
+.step-num{
+background:linear-gradient(135deg,#f97316,#ea580c);
+color:#fff;
+border-radius:50%;
+width:24px;
+height:24px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:0.75rem;
+font-weight:700;
+flex-shrink:0;
+margin-top:1px;
+}
+.bold{font-weight:600;color:var(--foreground)}
+@media(max-width:640px){
+.card{padding:2rem 1.25rem}
+.status-code{font-size:4rem}
+.heading{font-size:1.5rem}
+.description{font-size:0.95rem}
+.actions{flex-direction:column}
+.btn{width:100%}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f97316"/><stop offset="100%" style="stop-color:#fbbf24"/></linearGradient></defs><rect width="100" height="100" rx="20" fill="url(#g)"/><text x="50" y="70" font-family="system-ui,sans-serif" font-size="60" font-weight="bold" text-anchor="middle" fill="white">C</text></svg>
+<h1 class="status-code">503</h1>
+<h2 class="heading">Service Temporarily Unavailable</h2>
+<p class="description">We're working on getting things back up. This usually resolves quickly &mdash; please try again in a moment.</p>
+<div class="actions">
+<a href="." class="btn btn-primary" onclick="location.reload();return false">Try Again</a>
+<a href="https://cloud-station.io" class="btn btn-secondary">Visit CloudStation</a>
+</div>
+<hr class="divider">
+<div class="troubleshooting">
+<h3>Why am I seeing this?</h3>
+<div class="section">
+<h4><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>Application Status</h4>
+<ul>
+<li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Application might still be deploying</li>
+<li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Deployment might have failed</li>
+</ul>
+</div>
+<div class="section">
+<h4><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M12 8v8m-4-4h8"/></svg>Port Configuration</h4>
+<ul>
+<li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Port mismatch between application and CloudStation</li>
+<li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>Check port number in Live Logs</li>
+</ul>
+</div>
+<div class="section">
+<h4><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>How to fix this</h4>
+<ol class="steps">
+<li><span class="step-num">1</span><span>Check the <span class="bold">Live Logs</span> tab to see your application's status</span></li>
+<li><span class="step-num">2</span><span>Look for the port number your application is using</span></li>
+<li><span class="step-num">3</span><span>Update port in the <span class="bold">Connect</span> tab if needed</span></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

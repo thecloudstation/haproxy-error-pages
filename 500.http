@@ -1,0 +1,156 @@
+HTTP/1.0 500 Internal Server Error
+Cache-Control: no-cache
+Connection: close
+Content-Type: text/html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>500 - Internal Server Error - CloudStation</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--background:#ffffff;--background:oklch(1 0 0);
+--foreground:#252525;--foreground:oklch(0.145 0 0);
+--card:#ffffff;--card:oklch(1 0 0);
+--card-foreground:#252525;--card-foreground:oklch(0.145 0 0);
+--primary:#343434;--primary:oklch(0.205 0 0);
+--primary-foreground:#fcfcfc;--primary-foreground:oklch(0.985 0 0);
+--muted-foreground:#8e8e8e;--muted-foreground:oklch(0.556 0 0);
+--border:#ebebeb;--border:oklch(0.922 0 0);
+}
+@media(prefers-color-scheme:dark){
+:root{
+--background:#252525;--background:oklch(0.145 0 0);
+--foreground:#fcfcfc;--foreground:oklch(0.985 0 0);
+--card:#343434;--card:oklch(0.205 0 0);
+--card-foreground:#fcfcfc;--card-foreground:oklch(0.985 0 0);
+--primary:#ebebeb;--primary:oklch(0.922 0 0);
+--primary-foreground:#343434;--primary-foreground:oklch(0.205 0 0);
+--muted-foreground:#b5b5b5;--muted-foreground:oklch(0.708 0 0);
+--border:rgba(255,255,255,0.1);--border:oklch(1 0 0 / 10%);
+}
+}
+body{
+font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:radial-gradient(ellipse at 30% 20%,rgba(238,106,12,0.15) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(20,184,166,0.1) 0%,transparent 50%);
+background-color:var(--background);
+color:var(--foreground);
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:1.5rem;
+line-height:1.6;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale;
+}
+.container{width:100%;max-width:540px}
+.card{
+background:var(--card);
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+border-radius:22px;
+border:1px solid var(--border);
+box-shadow:0 30px 80px -40px rgba(238,106,12,0.25);
+padding:2.5rem 2rem;
+text-align:center;
+}
+.icon{width:64px;height:64px;margin:0 auto 1.5rem}
+.code{
+font-size:6rem;
+font-weight:800;
+line-height:1;
+letter-spacing:-0.02em;
+margin-bottom:0.5rem;
+background:linear-gradient(to right,#f97316,#ea580c,#f59e0b);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+}
+h1{font-size:1.75rem;font-weight:700;margin-bottom:0.75rem;color:var(--card-foreground)}
+.desc{color:var(--muted-foreground);font-size:0.95rem;margin-bottom:2rem;max-width:400px;margin-left:auto;margin-right:auto}
+.actions{display:flex;flex-direction:column;align-items:center;gap:0.75rem;margin-bottom:2rem}
+.btn{
+display:inline-flex;align-items:center;justify-content:center;
+background:var(--primary);color:var(--primary-foreground);
+font-size:0.875rem;font-weight:600;
+padding:0.625rem 1.5rem;
+border-radius:0.5rem;border:none;cursor:pointer;
+text-decoration:none;
+transition:opacity 0.15s ease;
+}
+.btn:hover{opacity:0.9}
+.link{
+color:var(--muted-foreground);font-size:0.8125rem;text-decoration:none;
+transition:color 0.15s ease;
+}
+.link:hover{color:var(--foreground)}
+.divider{
+height:1px;background:var(--border);margin:0 -2rem 1.5rem;
+}
+.troubleshoot{text-align:left}
+.troubleshoot summary{
+font-size:0.8125rem;font-weight:600;
+color:var(--card-foreground);cursor:pointer;
+padding:0.25rem 0;
+}
+.troubleshoot summary::-webkit-details-marker{display:none}
+.troubleshoot summary::marker{display:none;content:""}
+.troubleshoot summary::before{content:"\25B6\00a0";font-size:0.625rem;vertical-align:middle}
+.troubleshoot[open] summary::before{content:"\25BC\00a0"}
+.troubleshoot ul{
+list-style:none;padding:0;margin:0.5rem 0 1rem;
+}
+.troubleshoot li{
+font-size:0.8125rem;color:var(--muted-foreground);
+padding:0.2rem 0 0.2rem 1rem;
+position:relative;
+}
+.troubleshoot li::before{
+content:"\2022";position:absolute;left:0;color:var(--border);
+}
+.ts-group+.ts-group{margin-top:0.5rem}
+@media(max-width:480px){
+.card{padding:2rem 1.25rem}
+.code{font-size:4.5rem}
+h1{font-size:1.375rem}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<div class="icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f97316"/><stop offset="100%" style="stop-color:#fbbf24"/></linearGradient></defs><rect width="100" height="100" rx="20" fill="url(#g)"/><text x="50" y="70" font-family="system-ui,sans-serif" font-size="60" font-weight="bold" text-anchor="middle" fill="white">C</text></svg>
+</div>
+<div class="code">500</div>
+<h1>Internal Server Error</h1>
+<p class="desc">Something went wrong on our end. Our team has been notified and is looking into it.</p>
+<div class="actions">
+<a href="." class="btn">Try Again</a>
+<a href="https://cloud-station.io" class="link">Visit CloudStation</a>
+</div>
+<div class="divider"></div>
+<details class="troubleshoot ts-group">
+<summary>What does this mean?</summary>
+<ul>
+<li>An unexpected error occurred on the server</li>
+<li>This could be a configuration issue or an application crash</li>
+<li>Our team has been automatically notified</li>
+</ul>
+</details>
+<details class="troubleshoot ts-group">
+<summary>What can I do?</summary>
+<ul>
+<li>Check your application logs in the Live Logs tab</li>
+<li>Review recent deployments or configuration changes</li>
+<li>Contact support if the issue persists</li>
+</ul>
+</details>
+</div>
+</div>
+</body>
+</html>
