@@ -11,163 +11,469 @@ Content-Type: text/html
 <meta http-equiv="refresh" content="15">
 <title>502 - Bad Gateway | CloudStation</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 :root{
---bg:oklch(1 0 0);--fg:oklch(0.145 0 0);
---card:oklch(1 0 0);--card-fg:oklch(0.145 0 0);
---primary:oklch(0.205 0 0);--primary-fg:oklch(0.985 0 0);
---secondary:oklch(0.97 0 0);--secondary-fg:oklch(0.205 0 0);
---muted-fg:oklch(0.556 0 0);
---border:oklch(0.922 0 0);
+--background:0 0% 100%;
+--foreground:0 0% 3.9%;
+--card:0 0% 100%;
+--card-foreground:0 0% 3.9%;
+--primary:25 95% 53%;
+--primary-foreground:0 0% 100%;
+--secondary:0 0% 96.1%;
+--secondary-foreground:0 0% 9%;
+--muted-foreground:0 0% 45.1%;
+--border:0 0% 89.8%;
+--destructive:0 84.2% 60.2%;
+--destructive-foreground:0 0% 98%;
+--radius:0.75rem;
 --logo-color:#001730;
 }
 @media(prefers-color-scheme:dark){:root{
---bg:oklch(0.145 0 0);--fg:oklch(0.985 0 0);
---card:oklch(0.205 0 0);--card-fg:oklch(0.985 0 0);
---primary:oklch(0.922 0 0);--primary-fg:oklch(0.205 0 0);
---secondary:oklch(0.269 0 0);--secondary-fg:oklch(0.985 0 0);
---muted-fg:oklch(0.708 0 0);
---border:oklch(1 0 0 / 10%);
+--background:0 0% 3.9%;
+--foreground:0 0% 98%;
+--card:0 0% 3.9%;
+--card-foreground:0 0% 98%;
+--primary:25 95% 53%;
+--primary-foreground:0 0% 100%;
+--secondary:0 0% 14.9%;
+--secondary-foreground:0 0% 98%;
+--muted-foreground:0 0% 63.9%;
+--border:0 0% 14.9%;
+--destructive:0 62.8% 30.6%;
+--destructive-foreground:0 0% 98%;
 --logo-color:#fafafa;
 }}
-*{margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box;border-color:hsl(var(--border))}
 body{
-font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-background-color:var(--bg);
-color:var(--fg);
+font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+background:hsl(var(--background));
+color:hsl(var(--foreground));
 min-height:100vh;
-display:flex;
-flex-direction:column;
+overflow:hidden;
+position:relative;
 -webkit-font-smoothing:antialiased;
 -moz-osx-font-smoothing:grayscale;
 }
+.grid-bg{
+position:absolute;
+inset:0;
+opacity:0.02;
+background-image:linear-gradient(hsl(var(--foreground)) 1px,transparent 1px),linear-gradient(90deg,hsl(var(--foreground)) 1px,transparent 1px);
+background-size:80px 80px;
+}
+.scan-line{
+position:absolute;
+inset:0;
+overflow:hidden;
+pointer-events:none;
+}
+.scan-line::after{
+content:'';
+position:absolute;
+inset-inline:0;
+height:1px;
+background:hsl(var(--primary)/.2);
+animation:scan 4s linear infinite;
+}
+@keyframes scan{
+0%{transform:translateY(-100%)}
+100%{transform:translateY(100vh)}
+}
+@keyframes pulse-slow{
+0%,100%{opacity:0.4}
+50%{opacity:1}
+}
+@keyframes slide-up{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
 .header{
+position:relative;
+z-index:10;
 display:flex;
 align-items:center;
-gap:0.625rem;
-padding:1rem 1.5rem;
-border-bottom:1px solid var(--border);
+justify-content:space-between;
+padding:1.25rem 1.5rem;
 }
-.header svg{flex-shrink:0;color:var(--logo-color)}
-.header span{font-weight:700;font-size:1.125rem;letter-spacing:-0.025em;color:var(--fg)}
-.main{display:flex;flex-direction:row;min-height:calc(100vh - 120px);flex:1}
-.left{width:41.67%;display:flex;flex-direction:column;justify-content:center;padding:2rem 2.5rem}
-.right{width:58.33%;padding:2rem 2.5rem;overflow-y:auto;display:flex;flex-direction:column;justify-content:center}
-.status-code{font-size:3.75rem;font-weight:700;line-height:1;color:var(--fg)}
-.heading{font-size:1.5rem;font-weight:700;margin-top:1rem;color:var(--fg)}
-.desc{color:var(--muted-fg);margin-top:0.5rem;font-size:0.875rem;line-height:1.625}
+.header-left{
+display:flex;
+align-items:center;
+gap:0.75rem;
+}
+.pulse-dot{
+height:0.5rem;
+width:0.5rem;
+border-radius:9999px;
+background:hsl(var(--primary));
+animation:pulse-slow 3s ease-in-out infinite;
+}
+.status-label{
+font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+font-size:0.75rem;
+letter-spacing:0.1em;
+color:hsl(var(--muted-foreground));
+text-transform:uppercase;
+}
+.time{
+font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+font-size:0.75rem;
+color:hsl(var(--muted-foreground));
+}
+.main{
+position:relative;
+z-index:10;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:1.5rem;
+min-height:100vh;
+}
+.content{
+width:100%;
+max-width:48rem;
+}
+.tag{
+font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+font-size:0.75rem;
+letter-spacing:0.3em;
+color:hsl(var(--primary));
+text-transform:uppercase;
+margin-bottom:1.5rem;
+opacity:0;
+animation:slide-up 0.8s ease-out 0.1s forwards;
+}
+.error-code{
+font-size:clamp(5rem,15vw,12rem);
+font-weight:700;
+line-height:0.85;
+letter-spacing:-0.05em;
+color:hsl(var(--foreground));
+opacity:0;
+animation:slide-up 0.8s ease-out 0.2s forwards;
+}
+.separator{
+display:flex;
+align-items:center;
+gap:1rem;
+margin:2rem 0;
+opacity:0;
+animation:slide-up 0.8s ease-out 0.3s forwards;
+}
+.separator .line{
+height:1px;
+flex:1;
+background:hsl(var(--border));
+}
+.separator .diamond{
+height:0.375rem;
+width:0.375rem;
+transform:rotate(45deg);
+background:hsl(var(--primary));
+}
+.separator .accent-line{
+height:1px;
+width:4rem;
+background:hsl(var(--primary)/.5);
+}
+.title{
+font-size:1.5rem;
+font-weight:600;
+letter-spacing:-0.025em;
+color:hsl(var(--foreground));
+margin-bottom:0.75rem;
+opacity:0;
+animation:slide-up 0.8s ease-out 0.4s forwards;
+}
+.desc{
+font-size:0.875rem;
+line-height:1.6;
+color:hsl(var(--muted-foreground));
+max-width:36rem;
+opacity:0;
+animation:slide-up 0.8s ease-out 0.4s forwards;
+}
+.card{
+margin-top:2rem;
+border-radius:var(--radius);
+border:1px solid hsl(var(--border));
+background:hsl(var(--card));
+padding:1.25rem;
+opacity:0;
+animation:slide-up 0.8s ease-out 0.5s forwards;
+box-shadow:0 1px 3px 0 rgb(0 0 0 / 0.03);
+}
+.card-header{
+display:flex;
+align-items:center;
+gap:0.5rem;
+margin-bottom:0.75rem;
+}
+.card-dot{
+height:0.375rem;
+width:0.375rem;
+border-radius:9999px;
+background:hsl(var(--primary));
+}
+.card-label{
+font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+font-size:0.6875rem;
+letter-spacing:0.15em;
+color:hsl(var(--muted-foreground));
+text-transform:uppercase;
+}
+.card-text{
+font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+font-size:0.75rem;
+line-height:1.6;
+color:hsl(var(--muted-foreground));
+}
+.visual{
+margin-top:1.5rem;
+border-radius:var(--radius);
+border:1px solid hsl(var(--border));
+background:hsl(var(--card));
+padding:1.25rem;
+opacity:0;
+animation:slide-up 0.8s ease-out 0.6s forwards;
+box-shadow:0 1px 3px 0 rgb(0 0 0 / 0.03);
+}
+.visual-header{
+display:flex;
+align-items:center;
+gap:0.5rem;
+margin-bottom:1rem;
+}
+.network-path{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0.5rem 0;
+}
+.node-container{
+display:flex;
+align-items:center;
+gap:0;
+flex:1;
+}
+.node{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:0.5rem;
+}
+.node-dot{
+height:0.75rem;
+width:0.75rem;
+border-radius:9999px;
+border:2px solid hsl(var(--border));
+background:transparent;
+transition:all 0.5s ease;
+}
+.node-dot.active{
+border-color:hsl(var(--primary));
+background:hsl(var(--primary)/.3);
+}
+.node-dot.error{
+border-color:hsl(var(--destructive));
+background:hsl(var(--destructive)/.3);
+}
+.node-label{
+font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+font-size:0.625rem;
+letter-spacing:0.05em;
+color:hsl(var(--muted-foreground)/.5);
+transition:color 0.5s ease;
+}
+.node-label.active{
+color:hsl(var(--primary));
+}
+.node-label.error{
+color:hsl(var(--destructive));
+}
+.connector{
+flex:1;
+margin:0 0.5rem;
+}
+.connector-line{
+height:1px;
+background:hsl(var(--border));
+transition:background 0.5s ease;
+}
+.connector-line.active{
+background:hsl(var(--primary)/.4);
+}
+.connector-line.error{
+background:hsl(var(--destructive)/.5);
+}
+.actions{
+display:flex;
+flex-wrap:wrap;
+align-items:center;
+gap:1rem;
+margin-top:2.5rem;
+opacity:0;
+animation:slide-up 0.8s ease-out 0.7s forwards;
+}
 .btn{
 display:inline-flex;
 align-items:center;
-justify-content:center;
-height:2.25rem;
-padding:0 1rem;
-background:var(--primary);
-color:var(--primary-fg);
-border-radius:0.375rem;
+gap:0.5rem;
+border-radius:var(--radius);
+background:hsl(var(--primary));
+color:hsl(var(--primary-foreground));
+padding:0.75rem 1.25rem;
 font-size:0.875rem;
 font-weight:500;
-margin-top:1.5rem;
+text-decoration:none;
 border:none;
 cursor:pointer;
-text-decoration:none;
+transition:all 0.2s;
 font-family:inherit;
-box-shadow:0 1px 2px 0 rgba(0,0,0,0.05);
 }
 .btn:hover{opacity:0.9}
-.link{color:var(--muted-fg);font-size:0.75rem;margin-top:1rem;text-decoration:none}
-.link:hover{color:var(--fg)}
-.rh{font-size:1.125rem;font-weight:600;margin-bottom:1rem;color:var(--fg)}
-.card{
-background:var(--secondary);
-border:1px solid var(--border);
-border-radius:0.75rem;
-padding:1rem 1.25rem;
-margin-bottom:0.75rem;
+.btn-secondary{
+background:hsl(var(--secondary));
+color:hsl(var(--foreground));
+border:1px solid hsl(var(--border));
 }
-.card:last-child{margin-bottom:0}
-.card h3{font-size:0.875rem;font-weight:600;margin-bottom:0.5rem;color:var(--fg)}
-.card ul,.card ol{list-style:none;padding:0;margin:0}
-.card li{
-font-size:0.8125rem;
-color:var(--muted-fg);
-line-height:1.5;
-margin-bottom:0.25rem;
-padding-left:1rem;
-position:relative;
-}
-.card li:last-child{margin-bottom:0}
-.card ul li::before{content:"\b7";position:absolute;left:0;font-weight:700}
-.card ol li{padding-left:1.25rem}
-.card ol li::before{
-position:absolute;left:0;
-font-weight:600;font-size:0.75rem;
-color:var(--fg);
-}
-.card ol li:nth-child(1)::before{content:"1."}
-.card ol li:nth-child(2)::before{content:"2."}
-.card ol li:nth-child(3)::before{content:"3."}
-.b{font-weight:600;color:var(--fg)}
+.btn-secondary:hover{border-color:hsl(var(--primary)/.4);background:hsl(var(--card)/.8)}
 .footer{
+position:relative;
+z-index:10;
 display:flex;
 align-items:center;
-justify-content:center;
-padding:1rem 1.5rem;
-border-top:1px solid var(--border);
-font-size:0.875rem;
-color:var(--muted-fg);
+justify-content:space-between;
+padding:1.25rem 1.5rem;
 }
-.footer a{color:var(--muted-fg);text-decoration:none}
-.footer a:hover{color:var(--fg)}
-@media(max-width:768px){
-.main{flex-direction:column}
-.left,.right{width:100%;padding:1.5rem}
-.left{text-align:center;align-items:center}
+.footer-text{
+font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+font-size:0.625rem;
+letter-spacing:0.15em;
+color:hsl(var(--muted-foreground)/.6);
+text-transform:uppercase;
+}
+@media(min-width:768px){
+.header{padding:1.25rem 3rem}
+.main{padding:1.5rem 3rem}
+.footer{padding:1.25rem 3rem}
+.title{font-size:1.5rem}
+.desc{font-size:1rem}
+}
+@media(min-width:1024px){
+.header{padding:1.25rem 5rem}
+.main{padding:1.5rem 5rem}
+.footer{padding:1.25rem 5rem}
 }
 </style>
 </head>
 <body>
-<div class="header">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" width="28" height="28" style="color:var(--logo-color)" fill="currentColor"><path d="M305.6 0C474.3 0 611.1 136.8 611.1 305.6C611.1 474.3 474.3 611.1 305.6 611.1C136.8 611.1 0 474.3 0 305.6C0 136.8 136.8 0 305.6 0ZM432.2 236.8C425.3 235.8 418.3 235.6 411.2 236.1C404.1 236.6 397.3 237.8 390.5 239.8C387 257.1 367.6 280.7 358.7 290.8C341.1 311.6 320.4 328.9 296.6 342.4C268.7 356.3 274.1 372 281.1 391.8C282.3 395.1 283.4 398.6 284.4 401.9C285.2 404.6 285.3 407.4 284.8 410.1C284.3 412.8 283.1 415.3 281.4 417.5C274.4 425 266 430 256.1 432.6H355C355.1 416.5 383.5 392.9 439.8 349.6C462.2 332.5 485.3 314.7 490.3 307.4C505 285.7 481.4 259.2 471.5 251.5C465.6 247.6 459.3 244.5 452.7 242.1C446 239.5 439.2 237.8 432.2 236.8ZM509 295.1C508.5 302.4 506.1 309.1 501.9 315.1C495.9 323.8 477.7 338 448.4 360.5C430 374.6 409.1 390.7 393.5 404.4C373.5 422.1 369.9 429.4 369.2 431.6C370.6 432 372 432.3 373.4 432.3H428.1C430 432.2 431.9 431.9 433.9 431.6C435.7 431.3 437.6 430.9 439.5 430.5C441.3 430.1 443.3 429.6 445.1 429.1C447 428.6 448.8 428 450.6 427.4C452.5 426.8 454.2 426.1 456 425.4C457.7 424.7 459.5 423.9 461.3 423C463 422.2 464.7 421.3 466.4 420.4C468 419.5 469.8 418.5 471.4 417.5C473 416.5 474.5 415.4 476.1 414.2C477.6 413.1 479.2 411.9 480.7 410.7C482.2 409.4 483.6 408.2 485 406.9C486.4 405.6 487.9 404.2 489.2 402.8C490.6 401.5 491.9 400 493.1 398.6C494.4 397.1 495.5 395.5 496.8 394C497.9 392.4 499 390.9 500.1 389.3C501.1 387.8 502.1 386 503.1 384.4C504.1 382.8 505 381.1 506 379.4C506.9 377.6 507.7 375.8 508.5 374.1C509.2 372.4 509.9 370.6 510.6 368.7C511.3 366.9 511.9 365.1 512.5 363.3C513 361.5 513.5 359.6 514 357.7C514.6 355.8 515 354 515.3 352.1C515.7 350.1 515.9 348.2 516.2 346.3C516.4 344.4 516.6 342.5 516.7 340.5C516.8 338.6 516.9 336.7 516.9 334.8C516.9 332.9 516.8 330.9 516.9 328.9C516.8 327 516.6 325.1 516.4 323.1C516.2 321.2 515.9 319.3 515.6 317.4C515.3 315.5 515 313.6 514.5 311.7C513.9 309.8 513.4 308 512.9 306.2C512.4 304.2 511.8 302.3 511.1 300.5C510.4 298.7 509.8 296.9 509 295.1ZM281.1 159.2C276.1 159.2 271.2 159.7 266.2 160.4C261.3 161.2 256.4 162.3 251.7 163.8C246.9 165.3 242.3 167.1 237.8 169.4C233.4 171.6 229.1 174.1 225 176.9C220.8 179.8 217 182.9 213.3 186.3C209.6 189.8 206.3 193.5 203.2 197.5C200.2 201.4 197.5 205.6 195 209.9C192.6 214.3 190.5 218.8 188.8 223.5C201.5 225.2 213 229.8 223.4 237.6C230 243.4 235.5 250 239.7 257.7C243.9 265.4 246.6 273.6 247.8 282.3C253.3 310.6 218.8 331.9 188.4 350.9C172.9 360.5 158.2 369.6 152 377.5C144.5 387.1 134.6 401.9 145.3 412.8C155.7 423.4 172.2 429 186.9 429.6C203.4 430.3 220.4 426 236.7 423.4C248.1 421.6 261.8 417.2 270.2 409C271.1 408.1 271.4 407 271 405.7C270.1 402.6 269 399.5 267.8 396.3C261 376.4 251.5 349.2 290.3 329.8C312.5 317.2 331.9 301.1 348.3 281.5C367.8 259.4 376.7 242.4 377 235.3C375.8 229.9 374.1 224.8 372.1 219.8C370 214.7 367.3 209.8 364.4 205.2C361.4 200.5 358.1 196.1 354.4 192C350.7 187.9 346.7 184.1 342.4 180.7C338 177.2 333.5 174.2 328.6 171.6C323.8 168.9 318.7 166.6 313.5 164.8C308.3 163 303 161.6 297.6 160.7C292.1 159.8 286.6 159.2 281.1 159.2ZM179.4 236.3C176.4 236.7 173.5 237.2 170.7 237.9C167.8 238.5 165 239.3 162.2 240.2C159.3 241.1 156.6 242.2 153.9 243.4C151.2 244.6 148.5 245.8 145.9 247.2C143.3 248.6 140.7 250.1 138.3 251.8C135.8 253.4 133.5 255.1 131.1 256.9C128.8 258.8 126.6 260.8 124.5 262.8C122.3 264.8 120.3 266.9 118.4 269.2C116.4 271.4 114.6 273.7 112.8 276C111.1 278.5 109.5 280.9 108 283.4C106.5 285.9 105.2 288.6 103.8 291.2C102.5 293.8 101.3 296.6 100.3 299.3C99.3 302 98.4 304.8 97.6 307.7C96.9 310.5 96.2 313.3 95.6 316.3C95.1 319.2 94.7 322.1 94.4 325.1C94.1 328 94 330.9 94 333.9C94 340.8 94.8 347.7 96.3 354.5C97.8 361.3 99.9 367.8 102.7 374.2C105.6 380.5 109 386.5 113.1 392.1C117.3 397.8 121.9 402.8 127.1 407.5C124.9 396 129.1 384.1 140.9 369C148.6 358.9 164.3 349.2 181 338.9C207.6 322.4 237.8 303.7 233.9 285C227.9 254 212 239.8 179.4 236.3Z"/></svg>
-<span>CloudStation</span>
+<div class="grid-bg"></div>
+<div class="scan-line"></div>
+<main class="main">
+<div class="content">
+<p class="tag">Error Response</p>
+<h1 class="error-code">502</h1>
+<div class="separator">
+<div class="line"></div>
+<div class="diamond"></div>
+<div class="accent-line"></div>
 </div>
-<div class="main">
-<div class="left">
-<div class="status-code">502</div>
-<h1 class="heading">Bad Gateway</h1>
-<p class="desc">We received an invalid response from the upstream server. This is usually temporary &mdash; please try again in a moment.</p>
-<a href="." class="btn" onclick="location.reload();return false">Try Again</a>
-<a href="https://cloud-station.io" class="link">cloud-station.io</a>
-</div>
-<div class="right">
-<div>
-<h2 class="rh">Why am I seeing this?</h2>
+<h2 class="title">Bad Gateway</h2>
+<p class="desc">The server, while acting as a gateway or proxy, received an invalid response from an upstream server it accessed in attempting to fulfill the request.</p>
 <div class="card">
-<h3>Possible Causes</h3>
-<ul>
-<li>Application crashed or is restarting</li>
-<li>Upstream server returned an invalid response</li>
-<li>Network issue between load balancer and app</li>
-</ul>
+<div class="card-header">
+<div class="card-dot"></div>
+<span class="card-label">Diagnostic</span>
 </div>
-<div class="card">
-<h3>Common Fixes</h3>
-<ul>
-<li>Check if your application is running in <span class="b">Live Logs</span></li>
-<li>Verify your app responds on the configured port</li>
-<li>Review recent deployments for breaking changes</li>
-</ul>
+<p class="card-text">NETWORK: The edge proxy received a malformed response from the upstream origin. Connection was established but the response payload could not be parsed. Upstream health check initiated.</p>
 </div>
-<div class="card">
-<h3>How to resolve</h3>
-<ol>
-<li>Check the <span class="b">Live Logs</span> tab for errors</li>
-<li>Restart your application from the dashboard</li>
-<li>Verify port settings in the <span class="b">Connect</span> tab</li>
-</ol>
+<div class="visual">
+<div class="visual-header">
+<div class="card-dot"></div>
+<span class="card-label">Network Path</span>
+</div>
+<div class="network-path">
+<div class="node-container">
+<div class="node">
+<div class="node-dot" id="node0"></div>
+<span class="node-label" id="label0">Client</span>
+</div>
+<div class="connector">
+<div class="connector-line" id="conn0"></div>
 </div>
 </div>
+<div class="node-container">
+<div class="node">
+<div class="node-dot" id="node1"></div>
+<span class="node-label" id="label1">Edge</span>
+</div>
+<div class="connector">
+<div class="connector-line" id="conn1"></div>
 </div>
 </div>
-<div class="footer">&copy; 2026 CloudStation &middot; <a href="https://cloud-station.io">cloud-station.io</a></div>
+<div class="node-container">
+<div class="node">
+<div class="node-dot error" id="node2"></div>
+<span class="node-label error" id="label2">Gateway</span>
+</div>
+<div class="connector">
+<div class="connector-line" id="conn2"></div>
+</div>
+</div>
+<div class="node">
+<div class="node-dot" id="node3"></div>
+<span class="node-label" id="label3">Origin</span>
+</div>
+</div>
+</div>
+</div>
+<div class="actions">
+<button class="btn" onclick="location.reload()">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></polyline></svg>
+Retry
+</button>
+<a href="https://cloud-station.io" class="btn btn-secondary">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></polyline></svg>
+Go Home
+</a>
+</div>
+</div>
+</main>
+<script>
+let activeNode=0;
+function animateNetwork(){
+for(let i=0;i<=3;i++){
+const node=document.getElementById('node'+i);
+const label=document.getElementById('label'+i);
+if(i<activeNode){
+if(i!==2){
+node.classList.add('active');
+label.classList.add('active');
+}
+}else{
+if(i!==2){
+node.classList.remove('active');
+label.classList.remove('active');
+}
+}
+}
+for(let i=0;i<3;i++){
+const conn=document.getElementById('conn'+i);
+if(i<activeNode-1){
+if(i!==1){
+conn.classList.add('active');
+}else{
+conn.classList.add('error');
+}
+}else{
+conn.classList.remove('active','error');
+}
+}
+activeNode=(activeNode+1)%5;
+}
+setInterval(animateNetwork,1500);
+animateNetwork();
+</script>
 </body>
 </html>
