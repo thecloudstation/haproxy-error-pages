@@ -99,8 +99,8 @@ align-items:center;
 gap:0.75rem;
 }
 .logo-mark{
-width:10rem;
-height:1.75rem;
+width:14rem;
+height:2rem;
 display:block;
 color:var(--logo-color);
 flex-shrink:0;
